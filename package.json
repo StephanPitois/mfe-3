@@ -1,10 +1,10 @@
 {
-  "name": "svelte-app",
+  "name": "mfe3-app",
   "version": "1.0.0",
   "private": true,
   "scripts": {
     "build": "rollup -c",
-    "dev": "rollup -c -w",
+    "dev": "PORT=1973 rollup -c -w",
     "start": "sirv public --no-clear"
   },
   "devDependencies": {
