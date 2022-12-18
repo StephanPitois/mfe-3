@@ -182,6 +182,18 @@
   "resolved" "https://registry.npmjs.org/builtin-modules/-/builtin-modules-3.2.0.tgz"
   "version" "3.2.0"
 
+"carbon-components-svelte@^0.70.13":
+  "integrity" "sha512-p6wX8004BM6DrrLH1JJWbkR/VybU0gra+jDWlSW1V2aO8XmAz81evnDLZuTrvbHNkEXPiaC+athSjNsBOf0SjA=="
+  "resolved" "https://registry.npmjs.org/carbon-components-svelte/-/carbon-components-svelte-0.70.13.tgz"
+  "version" "0.70.13"
+  dependencies:
+    "flatpickr" "4.6.9"
+
+"carbon-icons-svelte@^11.4.0":
+  "integrity" "sha512-p/llZde2kP2BI9SOqM+QFKGfQnYrW+4dVxF1rAYriEADXDsjt9EYlh+KpQ5qf4JpXAq+e2+TB/r/lIG1xdUbAQ=="
+  "resolved" "https://registry.npmjs.org/carbon-icons-svelte/-/carbon-icons-svelte-11.4.0.tgz"
+  "version" "11.4.0"
+
 "chalk@^2.0.0":
   "integrity" "sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ=="
   "resolved" "https://registry.npmjs.org/chalk/-/chalk-2.4.2.tgz"
@@ -269,6 +281,11 @@
   "version" "7.0.1"
   dependencies:
     "to-regex-range" "^5.0.1"
+
+"flatpickr@4.6.9":
+  "integrity" "sha512-F0azNNi8foVWKSF+8X+ZJzz8r9sE1G4hl06RyceIaLvyltKvDl6vqk9Lm/6AUUCi5HWaIjiUbk7UpeE/fOXOpw=="
+  "resolved" "https://registry.npmjs.org/flatpickr/-/flatpickr-4.6.9.tgz"
+  "version" "4.6.9"
 
 "fs.realpath@^1.0.0":
   "integrity" "sha1-FQStJSMVjKpA20onh8sBQRmU6k8= sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw=="

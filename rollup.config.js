@@ -34,14 +34,14 @@ export default {
 		sourcemap: true,
 		format: 'iife',
 		name: 'mf3App',
-		file: 'public/build/bundle.js'
+		file: 'public/build/bundle.js',
+		inlineDynamicImports: true, // Fix for "UMD and IIFE output formats are not supported for code-splitting builds"
 	},
 	plugins: [
 		svelte({
 			compilerOptions: {
 				// enable run-time checks when not in production
-				dev: !production,
-				customElement: true
+				dev: !production
 			}
 		}),
 		// we'll extract any component CSS out into

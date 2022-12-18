@@ -1,7 +1,7 @@
-<svelte:options tag="fl-shopping-cart" />
-
 <script>
 	import { registerEventListeners } from "./lib/EventListeners";
+	import { Modal } from "carbon-components-svelte";
+	import Icon from "carbon-icons-svelte/lib/ShoppingCart.svelte";
 
 	let cart = [];
 	let viewCart = false;
@@ -22,6 +22,7 @@
 			item.qty = item.qty + existingItem.qty;
 		}
 		cart = [...newCart, item];
+		viewCart = true;
 	};
 
 	registerEventListeners("App Shell: header", [
@@ -34,71 +35,58 @@
 
 <div class="mfeCard">
 	<div class="mfeCardTitle">Micro-Frontend</div>
-	<div class="mfeCardBody cartContent">
+	<div class="mfeCardBody cartContent flex-row">
+		<Icon />
 		{#if cart.length}
-			{itemCount} item(s) in shopping cart
-			<button style="margin-left: 5px;" on:click={() => (viewCart = true)}
-				>View</button
-			>
+			<a
+				href="#shopping-cart"
+				style="margin-left: 5px;"
+				on:click={() => (viewCart = true)}
+				>{itemCount} item(s) in shopping cart
+			</a>
 		{:else}
 			Your shopping cart is empty
 		{/if}
 	</div>
 </div>
 
-{#if viewCart}
-	<!-- svelte-ignore a11y-click-events-have-key-events -->
-	<div class="viewCart" on:click={() => (viewCart = false)}>
-		<div>
-			<strong>Shopping cart</strong>
-			{#each cart as item}
-				<div>{item.name} <br />{item.qty} x ${item.price}</div>
-			{/each}
-			<br />
-			<button on:click={() => (viewCart = false)}>Close</button>
-		</div>
+<Modal
+	passiveModal
+	bind:open={viewCart}
+	modalHeading="Shopping Cart"
+	on:open
+	on:close
+>
+	<div class="flex-column">
+		{#each cart as item}
+			<div>
+				{item.name} <br />{item.qty} x <strong>${item.price}</strong>
+			</div>
+		{/each}
 	</div>
-{/if}
+</Modal>
 
 <style>
-	/* 
-	@import url seems to be an acceptable way to share global styles.
-	@import seems to only import the style once, even when called
-	by several components on the same page. And from what I've seen
-	so far, the imported styles don't seem to be inlined in the 
-	generated web component, which is good as that prevents
-	duplication and bloat. global.css is defined in the app shell.
-	*/
-	@import "/global.css";
-
 	.cartContent {
 		padding: 5px 10px;
 	}
-	
-	.viewCart {
-		position: fixed;
-		z-index: 1000;
-		background: #33333366;
-		color: #333;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		overflow-y: scroll;
-		gap: 10px;
+
+	a {
+		color: #fff;
 	}
 
-	.viewCart > div {
+	.flex-column {
 		display: flex;
 		flex-direction: column;
-		gap: 12px;
-		background: white;
-		padding: 50px;
-		border-radius: 5px;
-		min-width: 400px;
+		justify-content: space-between;
+		gap: 25px;
+	}
+
+	.flex-row {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		gap: 10px;
+		align-items: center;
 	}
 </style>
