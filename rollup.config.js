@@ -31,6 +31,9 @@ function serve() {
 export default {
 	input: 'src/main.js',
 	output: {
+		// I do not recommened disabling or
+		// inlining the sourcemap at the moment
+		// sourcemap: production ? false : 'inline',
 		sourcemap: true,
 		format: 'iife',
 		name: 'mf3App',
