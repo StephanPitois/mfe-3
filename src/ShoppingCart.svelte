@@ -2,15 +2,21 @@
 	import { registerEventListeners } from "./lib/EventListeners";
 	import { Modal } from "carbon-components-svelte";
 	import Icon from "carbon-icons-svelte/lib/ShoppingCart.svelte";
+	// import ShoppingCardModal from "./lib/components/ShoppingCardModal.svelte";
+	import ItemAddedAlert from "./lib/components/ItemAddedAlert.svelte";
+	import { tick } from 'svelte';
 
 	let cart = [];
 	let viewCart = false;
+	let viewAlert = false;
+	let alertTimeout = null;
+	let lastItemAdded = "aslkdjasldkjasdl";
 
 	$: itemCount = cart.reduce(function (accumulator, currentValue) {
 		return accumulator + currentValue.qty;
 	}, 0);
 
-	const listener = ({ detail }) => {
+	const listener = async ({ detail }) => {
 		console.log(
 			`Header heard ITEM_ADDED_TO_CART: ${JSON.stringify(detail)}`
 		);
@@ -22,7 +28,17 @@
 			item.qty = item.qty + existingItem.qty;
 		}
 		cart = [...newCart, item];
-		viewCart = true;
+		// viewCart = true;
+
+		lastItemAdded = item;
+		viewAlert = true;
+		if (alertTimeout) {
+			clearTimeout(alertTimeout);
+			await tick();
+		}
+		alertTimeout = setTimeout(() => {
+			viewAlert = false;
+		}, 2000);
 	};
 
 	registerEventListeners("App Shell: header", [
@@ -34,7 +50,6 @@
 </script>
 
 <div class="mfeCard">
-	<div class="mfeCardTitle">Micro-Frontend</div>
 	<div class="mfeCardBody cartContent flex-row">
 		<Icon />
 		{#if cart.length}
@@ -49,6 +64,16 @@
 		{/if}
 	</div>
 </div>
+<!-- 
+{#if viewCart}
+	<ShoppingCardModal />
+{/if} -->
+
+{#if viewAlert}
+	<div class="alertWrapper">
+		<ItemAddedAlert message={`${itemCount} item(s) in shopping cart`} />
+	</div>
+{/if}
 
 <Modal
 	passiveModal
@@ -88,5 +113,13 @@
 		justify-content: space-between;
 		gap: 10px;
 		align-items: center;
+	}
+
+	.alertWrapper {
+		position: fixed;
+		bottom: 10px;
+		right: 10px;
+		max-width: 80%;
+		z-index: 1000;
 	}
 </style>

@@ -2,10 +2,9 @@
 </script>
 
 <div class="mfeCard">
-	<div class="mfeCardTitle">Micro-Frontend</div>
 	<div class="mfeCardBody">
 		<main class="mfeMain">
-			<h1 class="mfeMainH1">MFE 3: No-Face (顔無し, Kaonashi)</h1>
+			<h1 class="mfeMainH1">MFE 3: No-Face</h1>
 			<div class="flex">
 				<img
 					class="mfeMainImg"
