@@ -4,13 +4,12 @@
   "private": true,
   "scripts": {
     "build": "rollup -c",
-    "dev": "PORT=1973 rollup -c -w",
-    "start": "sirv public --no-clear"
+    "dev": "rollup -c -w",
+    "start": "sirv public --no-clear --port 1973"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-node-resolve": "^11.0.0",
-    "carbon-components-svelte": "^0.70.13",
     "carbon-icons-svelte": "^11.4.0",
     "rollup": "^2.3.4",
     "rollup-plugin-css-only": "^3.1.0",
