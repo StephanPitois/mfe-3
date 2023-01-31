@@ -44,15 +44,13 @@
     ]);
 </script>
 
-<div class="mfeCard">
-    <div class="mfeCardBody cartContent flex-row">
-        {#if $cart.length}
-        <a href="/shopping-cart">{itemCount} item(s) in shopping cart
-        </a>
-        {:else}
-        Your shopping cart is empty
-        {/if}
-    </div>
+<div class="cartContent flex-row">
+    {#if $cart.length}
+    <a href="/shopping-cart">{itemCount} item(s) in shopping cart
+    </a>
+    {:else}
+    Your shopping cart is empty
+    {/if}
 </div>
 
 {#if viewAlert}
