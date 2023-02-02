@@ -4,11 +4,13 @@
 
 <main>
     <h1>Shopping Cart</h1>
-    {#each $cart as item}
-        <div class="pb-10">
-            {item.name} <br />{item.qty} x <strong>${item.price}</strong>
-        </div>
-    {/each}
+    <div>
+        {#each $cart as item}
+            <div class="div-item no-flex">
+                {item.name} <br />{item.qty} x <strong>${item.price}</strong>
+            </div>
+        {/each}
+    </div>
     <p>
         Components <code>remote_app_3.ShoppingCart</code> and
         <code>remote_app_3.ShoppingCartDetails</code>
@@ -21,3 +23,9 @@
         buncle include code to never include more than once..
     </p>
 </main>
+
+<style>
+    .div-item {
+        padding-bottom: 2rem;
+    }
+</style>
