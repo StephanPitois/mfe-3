@@ -5,17 +5,22 @@
 <main>
     <h1>Shopping Cart</h1>
     <div>
-        {#each $cart as item}
-            <div class="div-item no-flex">
-                {item.name} <br />{item.qty} x <strong>${item.price}</strong>
-            </div>
-        {/each}
+        {#if $cart.length}
+            {#each $cart as item}
+                <div class="div-item no-flex">
+                    {item.name} <br />{item.qty} x
+                    <strong>${item.price}</strong>
+                </div>
+            {/each}
+        {:else}
+            <div class="div-item no-flex">Your shopping cart is empty</div>
+        {/if}
     </div>
-    <p>
+    <!-- <p>
         Components <code>remote_app_3.ShoppingCart</code> and
         <code>remote_app_3.ShoppingCartDetails</code>
         show that it is possible to define several micro-frontends in the same bundle.
-    </p>
+    </p> -->
 </main>
 
 <style>

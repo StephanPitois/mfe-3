@@ -11,7 +11,7 @@ function registerEventListeners(registree, registrations) {
     onMount(async () => {
         registrations.forEach(registration => {
             if (typeof window !== 'undefined') {
-                console.log(`'${registree}' added listener for event type '${registration.eventType}'`);
+                console.log(`${registree} subscribed to ${registration.eventType}`);
                 window.addEventListener(registration.eventType, registration.listener);
             }
         })
@@ -19,7 +19,7 @@ function registerEventListeners(registree, registrations) {
     onDestroy(async () => {
         registrations.forEach(registration => {
             if (typeof window !== 'undefined') {
-                console.log(`'${registree}' removed listener for event type '${registration.eventType}'`);
+                console.log(`${registree} unsubscribed from ${registration.eventType}`);
                 window.removeEventListener(registration.eventType, registration.listener);
             }
         })

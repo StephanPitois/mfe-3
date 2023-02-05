@@ -6,21 +6,22 @@
         return accumulator + currentValue.qty;
     }, 0);
 
-    const listener = async ({ detail }) => {
-        console.log(`Cart heard ITEM_ADDED_TO_CART: ${JSON.stringify(detail)}`);
+    const listener = async (evt) => {
+        console.log(`ShoppingCart received ${evt.type} ${JSON.stringify(evt.detail)}`);
+        const product = evt.detail;
         let newCart = [...$cart];
-        let item = { ...detail, qty: 1 };
-        const existingItem = newCart.find((itm) => itm.name === detail.name);
+        let item = { ...product, qty: 1 };
+        const existingItem = newCart.find((itm) => itm.name === product.name);
         if (existingItem) {
-            newCart = newCart.filter((itm) => itm.name !== detail.name);
+            newCart = newCart.filter((itm) => itm.name !== product.name);
             item.qty = item.qty + existingItem.qty;
         }
         $cart = [...newCart, item];
     };
 
-    registerEventListeners("App Shell: header", [
+    registerEventListeners("ShoppingCart", [
         {
-            eventType: "ITEM_ADDED_TO_CART",
+            eventType: "product:add-to-cart",
             listener,
         },
     ]);
