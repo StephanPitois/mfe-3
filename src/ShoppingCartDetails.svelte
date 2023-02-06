@@ -17,9 +17,9 @@
                             >
                         </div>
                         <div class="flex flex-row qty">
-                            <div>Quantity:</div>
+                            <div>Qty:</div>
                             <button
-                                class="secondary outline"
+                                class="secondary"
                                 on:click={() =>
                                     ($cart = getUpdatedCart($cart, item, -1))}
                                 >-</button
@@ -28,7 +28,7 @@
                                 {item.qty}
                             </div>
                             <button
-                                class="secondary outline"
+                                class="secondary"
                                 on:click={() =>
                                     ($cart = getUpdatedCart($cart, item, 1))}
                                 >+</button
@@ -53,7 +53,11 @@
         margin: 0;
     }
     button {
-        width: 2rem;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        padding: 0 0;
+        line-height: 22px;
     }
     .qty {
         gap: 0.5rem;
