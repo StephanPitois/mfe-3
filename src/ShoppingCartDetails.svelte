@@ -1,16 +1,41 @@
 <script>
     import { cart } from "./lib/stores.js";
+    import { getUpdatedCart } from "./lib/addToCart";
 </script>
 
 <main>
     <h1>Shopping Cart</h1>
-    <div>
+    <div class="gap-6 w-full lg:w-1/2">
         {#if $cart.length}
             {#each $cart as item}
-                <div class="div-item no-flex">
-                    {item.name} <br />{item.qty} x
-                    <strong>${item.price}</strong>
-                </div>
+                <article class="flex flex-row gap-5 justify-between">
+                    <div>{item.name}</div>
+                    <div class="gap-5" style="align-items: end;">
+                        <div class="no-flex">
+                            Total price: <strong
+                                >${item.qty * item.price}</strong
+                            >
+                        </div>
+                        <div class="flex flex-row qty">
+                            <div>Quantity:</div>
+                            <button
+                                class="secondary outline"
+                                on:click={() =>
+                                    ($cart = getUpdatedCart($cart, item, -1))}
+                                >-</button
+                            >
+                            <div>
+                                {item.qty}
+                            </div>
+                            <button
+                                class="secondary outline"
+                                on:click={() =>
+                                    ($cart = getUpdatedCart($cart, item, 1))}
+                                >+</button
+                            >
+                        </div>
+                    </div>
+                </article>
             {/each}
         {:else}
             <div class="div-item no-flex">Your shopping cart is empty</div>
@@ -24,7 +49,14 @@
 </main>
 
 <style>
-    .div-item {
-        padding-bottom: 2rem;
+    article {
+        margin: 0;
+    }
+    button {
+        width: 2rem;
+    }
+    .qty {
+        gap: 0.5rem;
+        align-items: baseline;
     }
 </style>
