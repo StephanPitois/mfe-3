@@ -1,6 +1,6 @@
 <script>
     import { cart } from "./lib/stores.js";
-    import { getUpdatedCart } from "./lib/addToCart";
+    import { getUpdatedCart, removeItem } from "./lib/addToCart";
 </script>
 
 <main>
@@ -34,7 +34,7 @@
                                 >+</button
                             >
                         </div>
-                        <button class="secondary" on:click={() => ($cart = [])}>Remove</button>
+                        <button class="secondary" on:click={() => ($cart = removeItem($cart, item))}>Remove</button>
                     </div>
                 </article>
             {/each}

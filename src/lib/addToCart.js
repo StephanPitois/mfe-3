@@ -11,4 +11,10 @@ function getUpdatedCart(cart, product, qty) {
     return result;
 }
 
-export { getUpdatedCart }
+function removeItem(cart, product) {
+    let result = cart.filter((itm) => itm.id !== product.id);
+    result.sort((a, b) => a.name.localeCompare(b.name));
+    return result;
+}
+
+export { getUpdatedCart, removeItem }
