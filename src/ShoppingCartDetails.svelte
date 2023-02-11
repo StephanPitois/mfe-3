@@ -56,6 +56,7 @@
     }
     button {
         width: 111px;
+        margin: 0;
     }
     button.round {
         width: 24px;
