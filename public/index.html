@@ -10,8 +10,47 @@
     <link rel='stylesheet' href='/build/bundle.css'>
     <script defer src='/build/bundle.js' id="bundle"></script>
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
         .mfe {
             outline: 1px solid silver;
+            padding: 1rem;
+        }
+
+        .grid-menu {
+            grid-area: menu;
+        }
+
+        .grid-main {
+            grid-area: main;
+            box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .grid-footer {
+            grid-area: footer;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 20% 1fr;
+            grid-template-rows: 1fr 20%;
+            grid-template-areas:
+                'menu main'
+                'menu main';
+            gap: 1px;
+            background-color: #ddd;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+
+        .grid-container>div {
+            background-color: #fff;
+            overflow-y: auto;
             padding: 1rem;
         }
     </style>
@@ -19,17 +58,26 @@
 
 <body>
     <div class="container">
-        <h1>Test Page</h1>
-        <p>
-            Use this page to test the micro-frontend in isolation.
-        </p>
-        <hr />
-        <div id="shopping-cart" class="mfe"></div>
-        <hr />
-        <div id="shopping-cart-details" class="mfe"></div>
-        <hr />
-        <button id="button1">Add Bread to Cart</button>
-        <button id="button2">Add Cheese to Cart</button>
+        <div class="grid-container">
+            <div class="grid-menu gap-10">
+                <div>
+                    <p>Trigger Events</p>
+                    <button id="button1">Add Bread to Cart</button>
+                    <button id="button2">Add Cheese to Cart</button>
+                </div>
+                <p>Use this page to test the micro-frontend in isolation.</p>
+            </div>
+            <div class="grid-main flex-col gap-10">
+                <div>
+                    <summary>Shopping Cart</summary>
+                    <div id="shopping-cart" class="mfe"></div>
+                </div>
+                <div>
+                    <summary>Shopping Cart Details</summary>
+                    <div id="shopping-cart-details" class="mfe"></div>
+                </div>
+            </div>
+        </div>
     </div>
     <script>
         const bundle = document.getElementById('bundle');
