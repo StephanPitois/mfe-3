@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width,initial-scale=1'>
+    <title>Test app</title>
+    <link rel="stylesheet" rel="preload" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
+    <link rel="stylesheet" rel="preload" href="https://mfe-shell-ten.vercel.app/global.css">
+    <link rel='stylesheet' href='/build/bundle.css'>
+    <script defer src='/build/bundle.js' id="bundle"></script>
+    <style>
+        .mfe {
+            outline: 1px solid silver;
+            padding: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container gap-5">
+        <hr />
+        <div id="shopping-cart" class="mfe"></div>
+        <hr />
+        <div id="shopping-cart-details" class="mfe"></div>
+        <hr />
+        <button id="button1">Add Bread to Cart</button>
+        <button id="button2">Add Cheese to Cart</button>
+    </div>
+    <script>
+        const bundle = document.getElementById('bundle');
+        bundle.addEventListener('load', () => {
+            new remote_app_3.ShoppingCart({
+                target: document.getElementById('shopping-cart')
+            });
+            new remote_app_3.ShoppingCartDetails({
+                target: document.getElementById('shopping-cart-details')
+            });
+        });
+        function addToCart(product) {
+            window.dispatchEvent(
+                new CustomEvent("product:add-to-cart", {
+                    detail: product,
+                })
+            );
+        }
+        const button1 = document.getElementById('button1');
+        button1.addEventListener('click', () => addToCart({
+            id: 1,
+            name: 'Bread',
+            price: 2
+        }));
+        const button2 = document.getElementById('button2');
+        button2.addEventListener('click', () => addToCart({
+            id: 2,
+            name: 'Cheese',
+            price: 6
+        }));
+    </script>
+</body>
+
+</html>
