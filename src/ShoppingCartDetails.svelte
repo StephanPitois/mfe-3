@@ -19,7 +19,7 @@
                         <div class="flex flex-row qty">
                             <div>Qty:</div>
                             <button
-                                class="secondary"
+                                class="round secondary"
                                 on:click={() =>
                                     ($cart = getUpdatedCart($cart, item, -1))}
                                 >-</button
@@ -28,15 +28,17 @@
                                 {item.qty}
                             </div>
                             <button
-                                class="secondary"
+                                class="round secondary"
                                 on:click={() =>
                                     ($cart = getUpdatedCart($cart, item, 1))}
                                 >+</button
                             >
                         </div>
+                        <button class="secondary" on:click={() => ($cart = [])}>Remove</button>
                     </div>
                 </article>
             {/each}
+            <button class="secondary" on:click={() => ($cart = [])}>Empty cart</button>
         {:else}
             <div class="div-item no-flex">Your shopping cart is empty</div>
         {/if}
@@ -53,11 +55,15 @@
         margin: 0;
     }
     button {
+        width: 111px;
+    }
+    button.round {
         width: 24px;
         height: 24px;
         border-radius: 50%;
         padding: 0 0;
         line-height: 22px;
+        margin: 0;
     }
     .qty {
         gap: 0.5rem;
