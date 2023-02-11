@@ -34,7 +34,7 @@
 
         .grid-container {
             display: grid;
-            grid-template-columns: 20% 1fr;
+            grid-template-columns: 30% 1fr;
             grid-template-rows: 1fr 20%;
             grid-template-areas:
                 'menu main'
@@ -64,6 +64,13 @@
                     <p>Trigger Events</p>
                     <button id="button1">Add Bread to Cart</button>
                     <button id="button2">Add Cheese to Cart</button>
+                    <!-- <textarea rows="6" style="font-size:smaller; font-family: 'Courier New', Courier, monospace;">
+{
+    id: 1,
+    name: 'Bread',
+    price: 2
+}
+                    </textarea> -->
                 </div>
                 <p>Use this page to test the micro-frontend in isolation.</p>
             </div>
@@ -99,7 +106,7 @@
         const button1 = document.getElementById('button1');
         button1.addEventListener('click', () => addToCart({
             id: 1,
-            name: 'Bread',
+            name: 'Bread - with long description to test wrapping',
             price: 2
         }));
         const button2 = document.getElementById('button2');
