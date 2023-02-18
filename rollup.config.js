@@ -3,7 +3,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
-import css from 'rollup-plugin-css-only';
+// import css from 'rollup-plugin-css-only';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -30,7 +30,7 @@ function serve() {
 
 export default {
 	input: 'src/main.js',
-	output: {
+	output: [{
 		// I do not recommened disabling or
 		// inlining the sourcemap at the moment
 		// sourcemap: production ? false : 'inline',
@@ -39,9 +39,18 @@ export default {
 		name: 'remote_app_3',
 		file: 'public/build/bundle.js',
 		inlineDynamicImports: true, // Fix for "UMD and IIFE output formats are not supported for code-splitting builds"
-	},
+	}, {
+		file: 'public/build/bundle.esm.js',
+		format: 'esm',
+		sourcemap: true
+	}, {
+		file: 'public/build/bundle.systemjs.js',
+		format: 'systemjs',
+		sourcemap: true
+	}],
 	plugins: [
 		svelte({
+			emitCss: false,
 			compilerOptions: {
 				// enable run-time checks when not in production
 				dev: !production
@@ -49,7 +58,7 @@ export default {
 		}),
 		// we'll extract any component CSS out into
 		// a separate file - better for performance
-		css({ output: 'bundle.css' }),
+		// css({ output: 'bundle.css' }),
 
 		// If you have external dependencies installed from
 		// npm, you'll most likely need these plugins. In
