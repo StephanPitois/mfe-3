@@ -32,7 +32,7 @@
                                 on:click={() => ($cart = getUpdatedCart($cart, item, 1))}>+</button>
                         </div>
                         <button
-                            class="secondary outline" style="font-size: small; width: auto;"
+                            class="---secondary ---outline" style="font-size: small; width: auto;"
                             on:click={() => ($cart = removeItem($cart, item))}>Delete</button>
                     </div>
                 </article>
@@ -41,7 +41,7 @@
                 >Empty cart</button
             > -->
         {:else}
-            <div class="div-item no-flex">Your shopping cart is empty</div>
+            <article class="div-item no-flex">Your shopping cart is empty</article>
         {/if}
     </div>
     <!-- <p>
@@ -52,10 +52,10 @@
 </main>
 
 <style>
-    article {
+    /* article {
         margin: 0;
         padding: 1rem;
-    }
+    } */
     button {
         width: 111px;
         margin: 0;
