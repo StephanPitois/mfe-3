@@ -2,7 +2,7 @@
 
 [![Deploy Svelte build to S3](https://github.com/StephanPitois/mfe-1/actions/workflows/main.yml/badge.svg)](https://github.com/StephanPitois/mfe-1/actions/workflows/main.yml)
 
-MFE used in https://github.com/StephanPitois/mfe-shell
+MFE3 used in https://github.com/StephanPitois/mfe-shell
 
 ## Events
 
